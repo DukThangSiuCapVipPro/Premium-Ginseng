@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cửa hàng</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Inter', Arial, sans-serif;
+  background:#f0f2f5;
+  color:#1a1a2e;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Header ── */
+.header {
+  background:linear-gradient(135deg, #ff6b35, #f7931e);
+  padding:0;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 12px rgba(255,107,53,0.3);
+}
+.header-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  max-width:1200px;
+  margin:0 auto;
+}
+.logo {
+  font-size:22px;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:-0.5px;
+}
+.logo span { opacity:0.8; font-weight:400; }
+.header-search {
+  flex:1;
+  max-width:480px;
+  margin:0 24px;
+  position:relative;
+  display:none;
+}
+.header-search input {
+  width:100%;
+  padding:10px 16px 10px 40px;
+  border:none;
+  border-radius:8px;
+  font-size:14px;
+  background:rgba(255,255,255,0.95);
+  outline:none;
+}
+.header-search svg {
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#999;
+}
+.header-badge {
+  position:relative;
+  color:#fff;
+  font-size:14px;
+  cursor:pointer;
+  padding:6px;
+}
+
+/* ── Banner ── */
+.banner {
+  background:linear-gradient(135deg, #fff5ed, #ffe8d6);
+  padding:28px 20px;
+  text-align:center;
+}
+.banner-inner {
+  max-width:1200px;
+  margin:0 auto;
+}
+.banner h2 {
+  font-size:20px;
+  font-weight:700;
+  color:#e8590c;
+  margin-bottom:6px;
+}
+.banner p {
+  font-size:14px;
+  color:#666;
+}
+
+/* ── Product Grid ── */
+.section {
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px 16px;
+}
+.section-title {
+  font-size:18px;
+  font-weight:700;
+  color:#1a1a2e;
+  margin-bottom:16px;
+  padding-left:4px;
+}
+
+.products {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:12px;
+}
+
+/* ── Product Card ── */
+.product-card {
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  transition:transform 0.2s, box-shadow 0.2s;
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+.product-card:hover {
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(0,0,0,0.1);
+}
+.product-card:active {
+  transform:scale(0.98);
+}
+
+.product-img-wrap {
+  position:relative;
+  overflow:hidden;
+  background:#f8f8f8;
+}
+.product-img-wrap img {
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  display:block;
+  transition:transform 0.3s;
+}
+.product-card:hover .product-img-wrap img {
+  transform:scale(1.05);
+}
+.product-badge {
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:#ff6b35;
+  color:#fff;
+  font-size:11px;
+  font-weight:600;
+  padding:3px 8px;
+  border-radius:4px;
+}
+
+.product-info {
+  padding:12px;
+}
+.product-name {
+  font-size:14px;
+  font-weight:600;
+  color:#333;
+  margin-bottom:8px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  line-clamp:2;
+  overflow:hidden;
+  line-height:1.4;
+  min-height:39px;
+}
+.product-action {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.btn-view {
+  flex:1;
+  padding:9px 12px;
+  background:linear-gradient(135deg, #ff6b35, #f7931e);
+  color:#fff;
+  font-size:13px;
+  font-weight:600;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  transition:opacity 0.2s;
+  text-align:center;
+}
+.btn-view:hover { opacity:0.9; }
+
+/* ── Loading / Empty ── */
+.status-msg {
+  text-align:center;
+  padding:60px 20px;
+  color:#999;
+  font-size:14px;
+}
+.spinner {
+  width:32px;
+  height:32px;
+  border:3px solid #eee;
+  border-top:3px solid #ff6b35;
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+  margin:0 auto 16px;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* ── Footer ── */
+.footer {
+  text-align:center;
+  padding:24px 16px;
+  color:#aaa;
+  font-size:12px;
+  border-top:1px solid #e8e8e8;
+  margin-top:20px;
+  background:#fff;
+}
+
+/* ── Desktop (>= 768px) ── */
+@media (min-width:768px) {
+  .header-search { display:block; }
+  .products { grid-template-columns:repeat(3, 1fr); gap:16px; }
+  .section { padding:28px 24px; }
+  .banner h2 { font-size:26px; }
+  .banner p { font-size:16px; }
+  .product-info { padding:14px 16px; }
+  .product-name { font-size:15px; }
+}
+
+/* ── Large Desktop (>= 1024px) ── */
+@media (min-width:1024px) {
+  .products { grid-template-columns:repeat(4, 1fr); gap:20px; }
+  .product-name { font-size:16px; min-height:44px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo">ShopVN <span>Store</span></div>
+    <div class="header-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
+    </div>
+    <div class="header-badge">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    </div>
+  </div>
+</div>
+
+<!-- Banner -->
+<div class="banner">
+  <div class="banner-inner">
+    <h2>Chao mung den ShopVN</h2>
+    <p>San pham chat luong - Giao hang nhanh chong</p>
+  </div>
+</div>
+
+<!-- Products -->
+<div class="section">
+  <div class="section-title">Tat ca san pham</div>
+  <div id="loading" class="status-msg">
+    <div class="spinner"></div>
+    Dang tai san pham...
+  </div>
+  <div class="products" id="products"></div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  &copy; 2025 ShopVN Store. Cam on quy khach!
+</div>
+
+<script>
+const container = document.getElementById("products");
+const loading = document.getElementById("loading");
+const searchInput = document.getElementById("search-input");
+let allProducts = [];
+
+async function loadProducts() {
+  const folders = [
+    "Hũ Đông Trùng 16 Triệu",
+    "Sâm Cho Nam",
+    "Sâm Cho Nữ"
+  ];
+
+  const found = [];
+
+  await Promise.all(folders.map(async (folder) => {
+    try {
+      const res = await fetch(`products/${encodeURIComponent(folder)}/avatar.png`, { method: "HEAD" });
+      if (res.ok) { found.push(folder); return; }
+    } catch {}
+    try {
+      const res = await fetch(`products/${encodeURIComponent(folder)}/avatar.jpg`, { method: "HEAD" });
+      if (res.ok) { found.push(folder); }
+    } catch {}
+  }));
+
+  found.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+  loading.style.display = "none";
+
+  if (found.length === 0) {
+    loading.style.display = "block";
+    loading.innerHTML = "Khong tim thay san pham nao.";
+    return;
+  }
+
+  allProducts = found;
+  renderProducts(found);
+}
+
+function renderProducts(list) {
+  container.innerHTML = "";
+  list.forEach(folder => {
+    const encodedFolder = encodeURIComponent(folder);
+    const card = document.createElement("a");
+    card.className = "product-card";
+    card.href = `product.html?product=${encodedFolder}`;
+
+    const imgWrap = document.createElement("div");
+    imgWrap.className = "product-img-wrap";
+
+    const img = document.createElement("img");
+    img.src = `products/${encodedFolder}/avatar.png`;
+    img.alt = folder;
+    img.loading = "lazy";
+    img.onerror = function() {
+      if (this.src.endsWith(".png")) {
+        this.src = `products/${encodedFolder}/avatar.jpg`;
+      }
+    };
+
+    imgWrap.appendChild(img);
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+
+    const name = document.createElement("div");
+    name.className = "product-name";
+    name.textContent = folder;
+
+    const action = document.createElement("div");
+    action.className = "product-action";
+
+    const btn = document.createElement("button");
+    btn.className = "btn-view";
+    btn.textContent = "Xem chi tiet";
+
+    action.appendChild(btn);
+    info.appendChild(name);
+    info.appendChild(action);
+    card.appendChild(imgWrap);
+    card.appendChild(info);
+    container.appendChild(card);
+  });
+}
+
+// Search filter
+searchInput.addEventListener("input", (e) => {
+  const q = e.target.value.toLowerCase().trim();
+  if (!q) {
+    renderProducts(allProducts);
+    return;
+  }
+  const filtered = allProducts.filter(f => f.toLowerCase().includes(q));
+  renderProducts(filtered);
+});
+
+loadProducts();
+</script>
+
+</body>
+</html>
