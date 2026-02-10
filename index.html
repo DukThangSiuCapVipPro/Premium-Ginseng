@@ -261,24 +261,24 @@ body {
 <!-- Banner -->
 <div class="banner">
   <div class="banner-inner">
-    <h2>Chao mung den ShopVN</h2>
-    <p>San pham chat luong - Giao hang nhanh chong</p>
+    <h2>Chào mừng đến ShopVN</h2>
+    <p>Sản phẩm chất lượng - Giao hàng nhanh chóng</p>
   </div>
 </div>
 
 <!-- Products -->
 <div class="section">
-  <div class="section-title">Tat ca san pham</div>
+  <div class="section-title">Tất cả sản phẩm</div>
   <div id="loading" class="status-msg">
     <div class="spinner"></div>
-    Dang tai san pham...
+    Đang tải sản phẩm...
   </div>
   <div class="products" id="products"></div>
 </div>
 
 <!-- Footer -->
 <div class="footer">
-  &copy; 2025 ShopVN Store. Cam on quy khach!
+  &copy; 2025 ShopVN Store. Cảm ơn quý khách!
 </div>
 
 <script>
@@ -313,7 +313,7 @@ async function loadProducts() {
 
   if (found.length === 0) {
     loading.style.display = "block";
-    loading.innerHTML = "Khong tim thay san pham nao.";
+    loading.innerHTML = "Không tìm thấy sản phẩm nào.";
     return;
   }
 
@@ -356,7 +356,7 @@ function renderProducts(list) {
 
     const btn = document.createElement("button");
     btn.className = "btn-view";
-    btn.textContent = "Xem chi tiet";
+    btn.textContent = "Xem chi tiết";
 
     action.appendChild(btn);
     info.appendChild(name);

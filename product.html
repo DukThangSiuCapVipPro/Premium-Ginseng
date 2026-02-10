@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chi tiet san pham</title>
+<title>Chi tiết sản phẩm</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -376,10 +376,10 @@ body {
 <!-- Header -->
 <div class="header">
   <div class="header-inner">
-    <button class="btn-back" onclick="window.location.href='index.html'" aria-label="Quay lai">
+    <button class="btn-back" onclick="window.location.href='index.html'" aria-label="Quay lại">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     </button>
-    <div class="header-title" id="title">Dang tai...</div>
+    <div class="header-title" id="title">Đang tải...</div>
   </div>
 </div>
 
@@ -402,48 +402,48 @@ body {
     <!-- Right / Bottom: Details -->
     <div class="detail-side">
       <div class="product-detail">
-        <h1 class="product-title" id="product-title">Dang tai...</h1>
+        <h1 class="product-title" id="product-title">Đang tải...</h1>
 
         <div class="product-meta">
           <span class="meta-tag">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-            Con hang
+            Còn hàng
           </span>
           <span class="meta-tag">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-            Giao hang toan quoc
+            Giao hàng toàn quốc
           </span>
         </div>
 
         <div class="description-section">
-          <div class="desc-label">Mo ta san pham</div>
-          <div class="description" id="description">Dang tai mo ta...</div>
+          <div class="desc-label">Mô tả sản phẩm</div>
+          <div class="description" id="description">Đang tải mô tả...</div>
         </div>
       </div>
 
       <div class="order-section">
         <h3>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
-          Dat hang
+          Đặt hàng
         </h3>
 
         <div class="form-row">
-          <label for="customer-name">Ho ten</label>
-          <input id="customer-name" placeholder="Nhap ho ten cua ban" required>
+          <label for="customer-name">Họ tên</label>
+          <input id="customer-name" placeholder="Nhập họ tên của bạn" required>
         </div>
 
         <div class="form-row">
-          <label for="customer-phone">So dien thoai</label>
-          <input id="customer-phone" type="tel" placeholder="Nhap so dien thoai" required>
+          <label for="customer-phone">Số điện thoại</label>
+          <input id="customer-phone" type="tel" placeholder="Nhập số điện thoại" required>
         </div>
 
         <div class="form-row">
-          <label for="customer-address">Dia chi giao hang</label>
-          <input id="customer-address" placeholder="Nhap dia chi nhan hang" required>
+          <label for="customer-address">Địa chỉ giao hàng</label>
+          <input id="customer-address" placeholder="Nhập địa chỉ nhận hàng" required>
         </div>
 
         <div class="form-row">
-          <label>So luong</label>
+          <label>Số lượng</label>
           <div class="quantity-wrap">
             <button class="qty-btn" type="button" onclick="adjustQty(-1)">&minus;</button>
             <input id="customer-quantity" type="number" min="1" value="1" required>
@@ -453,7 +453,7 @@ body {
 
         <button class="btn-submit" id="btn-submit" onclick="sendOrder()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-          Hoan thanh dat hang
+          Hoàn thành đặt hàng
         </button>
       </div>
     </div>
@@ -477,7 +477,7 @@ const productEncoded = encodeURIComponent(product);
 
 document.getElementById("title").textContent = productDecoded;
 document.getElementById("product-title").textContent = productDecoded;
-document.title = productDecoded + " - Chi tiet san pham";
+document.title = productDecoded + " - Chi tiết sản phẩm";
 
 // ── Gallery ──
 const track = document.getElementById("gallery-track");
@@ -609,10 +609,10 @@ fetch(`products/${productEncoded}/description.txt`)
     return res.text();
   })
   .then(text => {
-    document.getElementById("description").textContent = text || "Chua co mo ta.";
+    document.getElementById("description").textContent = text || "Chưa có mô tả.";
   })
   .catch(() => {
-    document.getElementById("description").textContent = "Chua co mo ta.";
+    document.getElementById("description").textContent = "Chưa có mô tả.";
   });
 
 // ── Quantity ──
@@ -629,10 +629,10 @@ function sendOrder() {
   const customerAddress = document.getElementById("customer-address").value.trim();
   const customerQuantity = document.getElementById("customer-quantity").value;
 
-  if (!customerName) return alert("Vui long nhap ho ten.");
-  if (!customerPhone) return alert("Vui long nhap so dien thoai.");
-  if (!customerAddress) return alert("Vui long nhap dia chi.");
-  if (!customerQuantity || customerQuantity < 1) return alert("Vui long nhap so luong hop le.");
+  if (!customerName) return alert("Vui lòng nhập họ tên.");
+  if (!customerPhone) return alert("Vui lòng nhập số điện thoại.");
+  if (!customerAddress) return alert("Vui lòng nhập địa chỉ.");
+  if (!customerQuantity || customerQuantity < 1) return alert("Vui lòng nhập số lượng hợp lệ.");
 
   const msg =
 `🛒 ĐƠN HÀNG MỚI
@@ -644,7 +644,7 @@ function sendOrder() {
 
   const btn = document.getElementById("btn-submit");
   btn.disabled = true;
-  btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Dang gui...`;
+  btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Đang gửi...`;
 
   fetch(`https://api.telegram.org/bot8198720098:AAGOJWlG6Z43TKRRFX84yTfA7KN8IhZ5J5E/sendMessage`, {
     method: "POST",
@@ -656,14 +656,14 @@ function sendOrder() {
   })
   .then(res => {
     if (!res.ok) throw new Error("Send failed");
-    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Dat hang thanh cong!`;
+    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Đặt hàng thành công!`;
     btn.style.background = "linear-gradient(135deg, #4caf50, #66bb6a)";
-    alert("Dat hang thanh cong! Chung toi se lien he ban som.");
+    alert("Đặt hàng thành công! Chúng tôi sẽ liên hệ bạn sớm.");
   })
   .catch(() => {
-    alert("Gui don hang that bai. Vui long thu lai.");
+    alert("Gửi đơn hàng thất bại. Vui lòng thử lại.");
     btn.disabled = false;
-    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Hoan thanh dat hang`;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Hoàn thành đặt hàng`;
   });
 }
 </script>
