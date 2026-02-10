@@ -397,25 +397,26 @@ let allProducts = [];
 
 async function loadProducts() {
   const folders = [
-    "Hũ Đông Trùng, sâm Ngọc Linh ngâm mật ong rừng U Minh",
     "Sâm hỗ trợ sinh lý, bồi bổ sức khỏe cho nam Pro77",
-    "Sâm Gym bồi bổ, hỗ trợ sức khỏe cho Nữ"
+    "Sâm Gym bồi bổ, hỗ trợ sức khỏe cho Nữ",
+    "Hũ Đông Trùng, sâm Ngọc Linh ngâm mật ong rừng U Minh",
   ];
 
   const found = [];
 
-  await Promise.all(folders.map(async (folder) => {
+  const results = await Promise.all(folders.map(async (folder) => {
     try {
       const res = await fetch(`products/${encodeURIComponent(folder)}/avatar.png`, { method: "HEAD" });
-      if (res.ok) { found.push(folder); return; }
+      if (res.ok) return folder;
     } catch {}
     try {
       const res = await fetch(`products/${encodeURIComponent(folder)}/avatar.jpg`, { method: "HEAD" });
-      if (res.ok) { found.push(folder); }
+      if (res.ok) return folder;
     } catch {}
+    return null;
   }));
 
-  found.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  results.forEach(f => { if (f) found.push(f); });
 
   loading.style.display = "none";
 
