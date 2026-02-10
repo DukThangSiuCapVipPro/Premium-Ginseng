@@ -263,9 +263,67 @@ body {
   .products { grid-template-columns:repeat(4, 1fr); gap:20px; }
   .product-name { font-size:16px; min-height:44px; }
 }
+
+/* ── Snowfall ── */
+.snowfall {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:9999;
+  overflow:hidden;
+}
+.snow {
+  position:absolute;
+  top:-10px;
+  width:6px;
+  height:6px;
+  background:rgba(255,255,255,0.6);
+  border-radius:50%;
+  animation:fall linear infinite;
+  filter:blur(0.5px);
+}
+@keyframes fall {
+  0% { transform:translateY(-10px) translateX(0); opacity:1; }
+  50% { opacity:0.8; }
+  100% { transform:translateY(100vh) translateX(30px); opacity:0; }
+}
+.snow:nth-child(1)  { left:3%;  width:4px; height:4px; animation-duration:8s;  animation-delay:0s;   opacity:0.5; }
+.snow:nth-child(2)  { left:10%; width:6px; height:6px; animation-duration:10s; animation-delay:1s;   opacity:0.6; }
+.snow:nth-child(3)  { left:18%; width:3px; height:3px; animation-duration:12s; animation-delay:0.5s; opacity:0.4; }
+.snow:nth-child(4)  { left:25%; width:5px; height:5px; animation-duration:9s;  animation-delay:2s;   opacity:0.5; }
+.snow:nth-child(5)  { left:33%; width:4px; height:4px; animation-duration:11s; animation-delay:0.8s; opacity:0.6; }
+.snow:nth-child(6)  { left:40%; width:6px; height:6px; animation-duration:7s;  animation-delay:1.5s; opacity:0.4; }
+.snow:nth-child(7)  { left:48%; width:3px; height:3px; animation-duration:13s; animation-delay:0.3s; opacity:0.5; }
+.snow:nth-child(8)  { left:55%; width:5px; height:5px; animation-duration:9s;  animation-delay:2.5s; opacity:0.6; }
+.snow:nth-child(9)  { left:63%; width:4px; height:4px; animation-duration:10s; animation-delay:1.2s; opacity:0.4; }
+.snow:nth-child(10) { left:70%; width:6px; height:6px; animation-duration:8s;  animation-delay:0.7s; opacity:0.5; }
+.snow:nth-child(11) { left:78%; width:3px; height:3px; animation-duration:12s; animation-delay:1.8s; opacity:0.6; }
+.snow:nth-child(12) { left:85%; width:5px; height:5px; animation-duration:11s; animation-delay:0.4s; opacity:0.4; }
+.snow:nth-child(13) { left:92%; width:4px; height:4px; animation-duration:9s;  animation-delay:2.2s; opacity:0.5; }
+.snow:nth-child(14) { left:7%;  width:3px; height:3px; animation-duration:14s; animation-delay:3s;   opacity:0.3; }
+.snow:nth-child(15) { left:52%; width:5px; height:5px; animation-duration:10s; animation-delay:3.5s; opacity:0.4; }
+.snow:nth-child(16) { left:35%; width:4px; height:4px; animation-duration:12s; animation-delay:4s;   opacity:0.5; }
+.snow:nth-child(17) { left:88%; width:6px; height:6px; animation-duration:8s;  animation-delay:1s;   opacity:0.3; }
+.snow:nth-child(18) { left:15%; width:3px; height:3px; animation-duration:13s; animation-delay:2.8s; opacity:0.4; }
+.snow:nth-child(19) { left:60%; width:4px; height:4px; animation-duration:11s; animation-delay:0.2s; opacity:0.5; }
+.snow:nth-child(20) { left:45%; width:5px; height:5px; animation-duration:9s;  animation-delay:3.2s; opacity:0.3; }
 </style>
 </head>
 <body>
+
+<!-- Snowfall -->
+<div class="snowfall">
+  <div class="snow"></div><div class="snow"></div><div class="snow"></div>
+  <div class="snow"></div><div class="snow"></div><div class="snow"></div>
+  <div class="snow"></div><div class="snow"></div><div class="snow"></div>
+  <div class="snow"></div><div class="snow"></div><div class="snow"></div>
+  <div class="snow"></div><div class="snow"></div><div class="snow"></div>
+  <div class="snow"></div><div class="snow"></div><div class="snow"></div>
+  <div class="snow"></div><div class="snow"></div>
+</div>
 
 <!-- Header -->
 <div class="header">
