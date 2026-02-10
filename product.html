@@ -615,6 +615,12 @@ fetch(`products/${productEncoded}/description.txt`)
     document.getElementById("description").textContent = "Chưa có mô tả.";
   });
 
+// ── Pre-fill from last order ──
+const lastOrder = JSON.parse(localStorage.getItem("lastOrder") || "{}");
+if (lastOrder.name) document.getElementById("customer-name").value = lastOrder.name;
+if (lastOrder.phone) document.getElementById("customer-phone").value = lastOrder.phone;
+if (lastOrder.address) document.getElementById("customer-address").value = lastOrder.address;
+
 // ── Quantity ──
 function adjustQty(delta) {
   const input = document.getElementById("customer-quantity");
@@ -656,6 +662,7 @@ function sendOrder() {
   })
   .then(res => {
     if (!res.ok) throw new Error("Send failed");
+    localStorage.setItem("lastOrder", JSON.stringify({ name: customerName, phone: customerPhone, address: customerAddress }));
     btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Đặt hàng thành công!`;
     btn.style.background = "linear-gradient(135deg, #4caf50, #66bb6a)";
     alert("Đặt hàng thành công! Chúng tôi sẽ liên hệ bạn sớm.");
