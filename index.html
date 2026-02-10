@@ -174,6 +174,19 @@ body {
   line-height:1.4;
   min-height:39px;
 }
+.product-price {
+  margin-bottom:6px;
+}
+.product-price .price-old {
+  font-size:12px;
+  color:#999;
+  text-decoration:line-through;
+}
+.product-price .price-new {
+  font-size:16px;
+  font-weight:700;
+  color:#e8590c;
+}
 .product-action {
   display:flex;
   align-items:center;
@@ -347,6 +360,32 @@ function renderProducts(list) {
     const info = document.createElement("div");
     info.className = "product-info";
 
+    const priceDiv = document.createElement("div");
+    priceDiv.className = "product-price";
+
+    fetch(`products/${encodedFolder}/price.txt`)
+      .then(r => r.ok ? r.text() : "")
+      .then(text => {
+        if (!text) return;
+        const lines = text.trim().split("\n");
+        lines.forEach(line => {
+          const [label, value] = line.split(":").map(s => s.trim());
+          if (!value) return;
+          if (label === "Old") {
+            const span = document.createElement("span");
+            span.className = "price-old";
+            span.textContent = value + "đ ";
+            priceDiv.appendChild(span);
+          } else if (label === "New") {
+            const span = document.createElement("span");
+            span.className = "price-new";
+            span.textContent = value + "đ";
+            priceDiv.appendChild(span);
+          }
+        });
+      })
+      .catch(() => {});
+
     const name = document.createElement("div");
     name.className = "product-name";
     name.textContent = folder;
@@ -359,6 +398,7 @@ function renderProducts(list) {
     btn.textContent = "Xem chi tiết và Đặt hàng";
 
     action.appendChild(btn);
+    info.appendChild(priceDiv);
     info.appendChild(name);
     info.appendChild(action);
     card.appendChild(imgWrap);
