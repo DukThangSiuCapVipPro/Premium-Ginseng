@@ -10,20 +10,20 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 body {
   font-family:'Inter', Arial, sans-serif;
-  background:#1a1410;
-  color:#f5ece0;
+  background:#faf6f0;
+  color:#3a2e22;
   -webkit-font-smoothing:antialiased;
 }
 
 /* ── Header ── */
 .header {
-  background:#231c14;
+  background:#fff;
   padding:0;
   position:sticky;
   top:0;
   z-index:100;
-  box-shadow:0 2px 12px rgba(0,0,0,0.3);
-  border-bottom:1px solid #3a2e22;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
+  border-bottom:1px solid #e8ddd0;
 }
 .header-top {
   display:flex;
@@ -36,11 +36,11 @@ body {
 .logo {
   font-size:22px;
   font-weight:700;
-  color:#d4a574;
+  color:#8b5e2f;
   letter-spacing:-0.5px;
   font-family:'Playfair Display', serif;
 }
-.logo span { opacity:0.7; font-weight:400; color:#b8a898; font-family:'Inter', sans-serif; font-size:14px; }
+.logo span { opacity:0.7; font-weight:400; color:#9a8574; font-family:'Inter', sans-serif; font-size:14px; }
 .header-search {
   flex:1;
   max-width:480px;
@@ -51,24 +51,24 @@ body {
 .header-search input {
   width:100%;
   padding:10px 16px 10px 40px;
-  border:1px solid #3a2e22;
+  border:1px solid #e8ddd0;
   border-radius:8px;
   font-size:14px;
-  background:#1e1812;
-  color:#f5ece0;
+  background:#f5efe6;
+  color:#3a2e22;
   outline:none;
 }
-.header-search input::placeholder { color:#7a6b5d; }
+.header-search input::placeholder { color:#a89888; }
 .header-search svg {
   position:absolute;
   left:12px;
   top:50%;
   transform:translateY(-50%);
-  color:#7a6b5d;
+  color:#a89888;
 }
 .header-badge {
   position:relative;
-  color:#d4a574;
+  color:#8b5e2f;
   font-size:14px;
   cursor:pointer;
   padding:6px;
@@ -76,10 +76,10 @@ body {
 
 /* ── Banner ── */
 .banner {
-  background:linear-gradient(135deg, #231c14, #1a1410);
+  background:linear-gradient(135deg, #fff8f0, #f5efe6);
   padding:28px 20px;
   text-align:center;
-  border-bottom:1px solid #3a2e22;
+  border-bottom:1px solid #e8ddd0;
 }
 .banner-inner {
   max-width:1200px;
@@ -88,14 +88,14 @@ body {
 .banner h2 {
   font-size:20px;
   font-weight:700;
-  color:#d4a574;
+  color:#8b5e2f;
   margin-bottom:6px;
   font-family:'Playfair Display', serif;
   letter-spacing:0.5px;
 }
 .banner p {
   font-size:14px;
-  color:#b8a898;
+  color:#7a6b5d;
 }
 
 /* ── Product Grid ── */
@@ -107,7 +107,7 @@ body {
 .section-title {
   font-size:18px;
   font-weight:700;
-  color:#d4a574;
+  color:#8b5e2f;
   margin-bottom:16px;
   padding-left:4px;
   font-family:'Playfair Display', serif;
@@ -122,10 +122,10 @@ body {
 
 /* ── Product Card ── */
 .product-card {
-  background:#231c14;
+  background:#fff;
   border-radius:12px;
   overflow:hidden;
-  border:1px solid #3a2e22;
+  border:1px solid #e8ddd0;
   transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   cursor:pointer;
   text-decoration:none;
@@ -134,8 +134,8 @@ body {
 }
 .product-card:hover {
   transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(160,120,60,0.15);
-  border-color:#a0783c;
+  box-shadow:0 8px 24px rgba(139,94,47,0.12);
+  border-color:#c9a87c;
 }
 .product-card:active {
   transform:scale(0.98);
@@ -144,7 +144,7 @@ body {
 .product-img-wrap {
   position:relative;
   overflow:hidden;
-  background:#1e1812;
+  background:#f5efe6;
 }
 .product-img-wrap img {
   width:100%;
@@ -160,7 +160,7 @@ body {
   position:absolute;
   top:8px;
   left:8px;
-  background:linear-gradient(135deg, #a0783c, #8b6914);
+  background:linear-gradient(135deg, #b8722d, #a0601a);
   color:#fff;
   font-size:11px;
   font-weight:600;
@@ -174,7 +174,7 @@ body {
 .product-name {
   font-size:14px;
   font-weight:600;
-  color:#f5ece0;
+  color:#3a2e22;
   margin-bottom:8px;
   display:-webkit-box;
   -webkit-line-clamp:2;
@@ -189,13 +189,13 @@ body {
 }
 .product-price .price-old {
   font-size:12px;
-  color:#7a6b5d;
+  color:#a89888;
   text-decoration:line-through;
 }
 .product-price .price-new {
   font-size:16px;
   font-weight:700;
-  color:#d4a574;
+  color:#b8722d;
 }
 .product-action {
   display:flex;
@@ -206,30 +206,30 @@ body {
 .btn-view {
   flex:1;
   padding:9px 12px;
-  background:linear-gradient(135deg, #a0783c, #8b6914);
+  background:linear-gradient(135deg, #b8722d, #a0601a);
   color:#fff;
   font-size:13px;
   font-weight:600;
-  border:none;
+  border:2px solid #ffd700;
   border-radius:8px;
   cursor:pointer;
   transition:opacity 0.2s;
   text-align:center;
 }
-.btn-view:hover { opacity:0.9; }
+.btn-view:hover { opacity:0.9; border-color:#ffe44d; }
 
 /* ── Loading / Empty ── */
 .status-msg {
   text-align:center;
   padding:60px 20px;
-  color:#7a6b5d;
+  color:#a89888;
   font-size:14px;
 }
 .spinner {
   width:32px;
   height:32px;
-  border:3px solid #3a2e22;
-  border-top:3px solid #a0783c;
+  border:3px solid #e8ddd0;
+  border-top:3px solid #b8722d;
   border-radius:50%;
   animation:spin 0.8s linear infinite;
   margin:0 auto 16px;
@@ -240,11 +240,11 @@ body {
 .footer {
   text-align:center;
   padding:24px 16px;
-  color:#7a6b5d;
+  color:#a89888;
   font-size:12px;
-  border-top:1px solid #3a2e22;
+  border-top:1px solid #e8ddd0;
   margin-top:20px;
-  background:#1a1410;
+  background:#f5efe6;
 }
 
 /* ── Desktop (>= 768px) ── */
@@ -280,7 +280,7 @@ body {
   top:-10px;
   width:6px;
   height:6px;
-  background:rgba(255,255,255,0.6);
+  background:rgba(184,114,45,0.25);
   border-radius:50%;
   animation:fall linear infinite;
   filter:blur(0.5px);
